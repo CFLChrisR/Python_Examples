@@ -41,9 +41,18 @@ weapon_types = {
 }
 
 
+def show_intro_text():
+    print("Welcome to the Old World. Your adventure awaits...\n\n"
+          "Press Enter")
+    input()
+
+
 # default location? or dialogbox?
 def open_saved_game():
-    gamefile = os.startfile("C:\\")
+    try:
+        gamefile = os.startfile("C:\\")
+    except:
+        return 1
 
 
 def attack(Userattack):
@@ -54,18 +63,18 @@ def attack(Userattack):
 
 
 # begin game here:
-print(f"Select a class:")
+show_intro_text()
+print('Select a class:')
 for unit in unit_types:
     print(f'{unit}'.upper())
-try :
+try:
     player_class_input = input().upper()
     if player_class_input in unit_types:
-    #player class is assigned here
-     player_class = player_class_input
-except:
+        # player class is assigned here
+        player_class = player_class_input
+except KeyError:
     print(1)
 
-print(player_class_input)
-print(unit_types_upgrades[player_class_input])
+print(f'You have selected {player_class_input}, which turns into {unit_types_upgrades[player_class_input]} at level 3.')
 # User_attack = input()
-# print(attack(User_attack))
+# print(attack(User_attack)) 
